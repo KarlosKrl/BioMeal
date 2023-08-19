@@ -1,64 +1,81 @@
 import MainPhotoesChange from "app/components/MainPhotoesChange";
+import { Suspense } from "react";
 export default function ProductPage({ params }) {
   const id = params.id;
   const produs1 = {
     id: "hfjy5467fjyrrosii",
     nume: "rosii",
     descriere: "sdfdhsfvjnkdsnjvkshfosgio dssjkfcndskfi vdsjfeoivj",
-    pret: 200,
+    pret: 20,
     image: [
       "/tomatoes.jpg",
+      "/mere.jpg",
       "/ceafaporc.png",
       "/tomatoes.jpg",
-      "/ceafaporc.png",
-      "/tomatoes.jpg",
+      "/.png",
     ],
-    alt: "rosii",
+    category: "legume",
   };
   const produs2 = {
     id: "hfjfgj6tfjyf6tyoua",
-    nume: "oua de gaina de tara",
+    nume: "oua",
     descriere: "sdfdhsfvjnkdsnjvkshfosgio dssjkfcndskfi vdsjfeoivj",
     pret: 200,
     image: [
       "/oua.png",
+      "/mere.jpg",
       "/ceafaporc.png",
       "/tomatoes.jpg",
-      "/ceafaporc.png",
-      "/tomatoes.jpg",
+      "/oua.png",
     ],
-    alt: "oua gaina",
+    category: "produse animale",
   };
   const produs3 = {
     id: "hhjhfkhfit76t68riyrii68carne",
-    nume: "ceafa de porc crescut la tara",
+    nume: "ceafa",
     descriere: "sdfdhsfvjnkdsnjvkshfosgio dssjkfcndskfi vdsjfeoivj",
     pret: 200,
     image: [
       "/ceafaporc.png",
+      "/mere.jpg",
       "/ceafaporc.png",
       "/tomatoes.jpg",
-      "/ceafaporc.png",
-      "/tomatoes.jpg",
+      "/oua.png",
     ],
-    alt: "ceafa porc",
+    category: "carne",
   };
-  const productsDatabase = [produs1, produs2, produs3];
+  const produs4 = {
+    id: "yhshjjsisisfveffv",
+    nume: "mere",
+    descriere: "hjsjcfihiisinsmsknk insnkikninks bi bujs siwiknw w",
+    pret: 40,
+    image: [
+      "/mere.jpg",
+      "/ceafaporc.png",
+      "/tomatoes.jpg",
+      "/ceafaporc.png",
+      "/oua.png",
+    ],
+    category: "fructe",
+  };
+  const productsDatabase = [produs1, produs2, produs3, produs4];
   const produse = productsDatabase.filter((product) => product.id === id);
   const produs = produse[0];
   return (
-    <>
+    <div className="w-full h-full">
       {produs && (
-        <div className="text-black bg-white h-full w-full px-2 pb-2 pt-11 flex flex-col gap-3 rounded-md items-center">
-          <MainPhotoesChange produs={produs} />
-          <div className="flex flex-col justify-between w-full max-w-[300px] mt-4 p-4 rounded-md h-[calc(100vh-430px)]">
-            <div className="flex flex-col gap-1">
+        <div className="text-black  h-full w-full p-2 flex flex-col gap-3 rounded-md justify-center items-center lg:flex-row">
+          <Suspense fallback={<div>Loading...</div>}>
+            <MainPhotoesChange produs={produs} />
+          </Suspense>
+          <div className="flex flex-col justify-between w-full rounded-md h-[57vh]">
+            <div className="flex flex-col gap-1 h-full">
               <div className=" text-xl font-bold">
                 {produs.nume.slice(0, 1).toUpperCase() + produs.nume.slice(1)}
               </div>
               <div className="text-sm ">{produs.descriere}</div>
             </div>
-            <div className="flex flex-col items-center justify-end justify-self-end">
+            <div className="flex flex-col lg:flex-row items-center gap-4 justify-end lg:items-end h-full justify-self-end ">
               <div className="font-bold text-lg text-center">
                 {produs.pret} RON
               </div>
@@ -77,6 +94,23 @@ export default function ProductPage({ params }) {
           </div>
         </div>
       )}
-    </>
+      <div className="h-[200px] w-full flex justify-between rounded-md bg-gray-200 p-4 text-white gap-4">
+        <div className="h-full flex flex-col w-[50%] items-center justify-center gap-2">
+          <input
+            type="text"
+            className="outline-none p-2 rounded-full bg-green-900 placeholder-gray-300"
+            placeholder="username"
+          />
+          <textarea
+            className="p-2 outline-none w-full h-[145px] rounded-md bg-green-900  placeholder-gray-300"
+            type="text"
+            placeholder="review"
+          />
+        </div>
+        <div className="h-full w-[50%] p-2 bg-green-900 rounded-md">
+          Recenzii
+        </div>
+      </div>
+    </div>
   );
 }

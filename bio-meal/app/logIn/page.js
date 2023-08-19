@@ -3,11 +3,9 @@ import { useState } from "react";
 export default function LogInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [emailValues, setEmailValues] = useState([]);
-  const [passwordValues, setPasswordValues] = useState([]);
 
   return (
-    <div className="h-screen bg-green-800 flex justify-center items-center">
+    <div className="h-[calc(100vh-40px)] flex justify-center items-center">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -17,14 +15,8 @@ export default function LogInPage() {
           setPasswordValues((prev) => [...prev, password]);
           setEmail("");
           setPassword("");
-          console.log("=================EMAIL================");
-          console.log(email);
-          console.log(emailValues);
-          console.log("===============PASSWORD==================");
-          console.log(password);
-          console.log(passwordValues);
         }}
-        className="bg-white text-black h-80 w-72 flex flex-col justify-center items-center rounded-md shadow-md"
+        className="bg-white text-black h-80 w-72 flex flex-col justify-center items-center rounded-md shadow-md border-2 border-green-800"
       >
         <div className="flex flex-col">
           <label className="w-64 text-center p-1">Username/Email</label>

@@ -5,8 +5,8 @@ import { useState } from "react";
 export default function MainPhotoesChange({ produs }) {
   const [currentImage, setCurrentImage] = useState(produs.image[0]);
   return (
-    <>
-      <div className="relative w-full max-w-[300px] aspect-square">
+    <div className="w-[300px] lg:w-[480px]">
+      <div className="relative w-full aspect-square">
         <Image
           src={currentImage}
           fill
@@ -16,7 +16,7 @@ export default function MainPhotoesChange({ produs }) {
           alt={produs.alt}
         />
       </div>
-      <div className=" flex h-full w-full gap-4 justify-center mt-4 max-w-[300px]">
+      <div className=" flex h-full w-full gap-4 justify-center mt-4">
         {produs.image.map((val, index) => (
           <button
             key={index}
@@ -33,6 +33,6 @@ export default function MainPhotoesChange({ produs }) {
           </button>
         ))}
       </div>
-    </>
+    </div>
   );
 }
